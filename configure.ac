@@ -249,6 +249,10 @@ PKG_CHECK_MODULES( [LIBV3270], [libv3270], AC_DEFINE(HAVE_LIBV3270,1,[Do we have
 AC_SUBST(LIBV3270_LIBS)
 AC_SUBST(LIBV3270_CFLAGS)
 
+AC_ARG_WITH([plugin-dir], [AS_HELP_STRING([--with-plugin-dir], [The application plugin dir])], [ app_cv_plugin_path="$withval" ],[ app_cv_plugin_path=`pkg-config --variable=plugin_path lib3270` ])
+AC_DEFINE_UNQUOTED(PLUGIN_DIR, "$app_cv_plugin_path", [The product name])
+AC_SUBST(PLUGIN_DIR,$app_cv_plugin_path)
+
 dnl ---------------------------------------------------------------------------
 dnl Check for GTK
 dnl ---------------------------------------------------------------------------

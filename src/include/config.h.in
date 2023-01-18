@@ -67,6 +67,9 @@
 #undef PACKAGE_VERSION
 
 /* The product name */
+#undef PLUGIN_DIR
+
+/* The product name */
 #undef PRODUCT_NAME
 
 /* Version number of package */
