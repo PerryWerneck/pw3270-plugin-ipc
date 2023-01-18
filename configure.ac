@@ -67,12 +67,39 @@ app_cv_dbus_path="/"`echo $app_cv_application_id | sed -e "s@\.@/@g"`
 AC_DEFINE_UNQUOTED(DBUS_OBJECT_PATH, "$app_cv_dbus_path",[The D-Bus object path])
 AC_SUBST(DBUS_OBJECT_PATH,$app_cv_dbus_path)
 
+dnl ---------------------------------------------------------------------------
+dnl Version info
+dnl ---------------------------------------------------------------------------
+
+AC_SUBST(PACKAGE_DESCRIPTION,"PW3270 IPC Plugin")
+
+app_vrs_major=$(echo $VERSION | cut -d. -f1)
+app_vrs_minor=$(echo $VERSION | cut -d. -f2)
+
+AC_DEFINE_UNQUOTED(PACKAGE_MAJOR_VERSION, $app_vrs_major, [ The package major version ])
+AC_DEFINE_UNQUOTED(PACKAGE_MINOR_VERSION, $app_vrs_minor, [ The package minor version ])
+
+AC_SUBST(PACKAGE_MAJOR_VERSION,$app_vrs_major)
+AC_SUBST(PACKAGE_MINOR_VERSION,$app_vrs_minor)
+
+AC_ARG_WITH([release], [AS_HELP_STRING([--with-release], [Set release])], [ app_cv_release="$withval" ],[ app_cv_release="`date +%-y`.`date +%-m`.`date +%-d`" ])
+
+app_rls_major=$(echo $app_cv_release.0.0 | cut -d. -f1)
+app_rls_minor=$(echo $app_cv_release.0.0 | cut -d. -f2)
+
+AC_DEFINE_UNQUOTED(PACKAGE_RELEASE, $app_cv_release, [ The package release ])
+AC_DEFINE_UNQUOTED(PACKAGE_MAJOR_RELEASE, $app_rls_major, [ The package release major] )
+AC_DEFINE_UNQUOTED(PACKAGE_MINOR_RELEASE, $app_rls_minor, [ The package release minor])
+
+AC_SUBST(PACKAGE_RELEASE,$app_cv_release)
+AC_SUBST(PACKAGE_MAJOR_RELEASE,$app_rls_major)
+AC_SUBST(PACKAGE_MINOR_RELEASE,$app_rls_minor)
 
 dnl ---------------------------------------------------------------------------
 dnl Set translation domain.
 dnl ---------------------------------------------------------------------------
 
-app_cv_gettext_package="libipc3270-$app_vrs_major.$app_vrs_minor"
+app_cv_gettext_package="ipc3270-plugin-$app_vrs_major.$app_vrs_minor"
 
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$app_cv_gettext_package",[The Gettext package name])
 AC_SUBST(GETTEXT_PACKAGE,"$app_cv_gettext_package")

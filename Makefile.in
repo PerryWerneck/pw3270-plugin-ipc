@@ -16,8 +16,6 @@ TEST_SOURCES= \
 	$(wildcard src/testprogram/*.c) \
 	$(wildcard src/testprogram/@OSNAME@/*.rc)
 	
-TARGETS=@OSNAME@-lib devel locale
-
 #---[ Tools ]----------------------------------------------------------------------------
 
 CC=@CC@

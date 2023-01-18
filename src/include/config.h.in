@@ -36,8 +36,23 @@
 /* Define to the address where bug reports for this package should be sent. */
 #undef PACKAGE_BUGREPORT
 
+/* The package release major */
+#undef PACKAGE_MAJOR_RELEASE
+
+/* The package major version */
+#undef PACKAGE_MAJOR_VERSION
+
+/* The package release minor */
+#undef PACKAGE_MINOR_RELEASE
+
+/* The package minor version */
+#undef PACKAGE_MINOR_VERSION
+
 /* Define to the full name of this package. */
 #undef PACKAGE_NAME
+
+/* The package release */
+#undef PACKAGE_RELEASE
 
 /* Define to the full name and version of this package. */
 #undef PACKAGE_STRING
