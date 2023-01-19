@@ -16,8 +16,6 @@ TEST_SOURCES= \
 	$(wildcard src/testprogram/*.c) \
 	$(wildcard src/testprogram/@OSNAME@/*.rc)
 	
-TARGETS=@OSNAME@-lib devel locale
-
 #---[ Tools ]----------------------------------------------------------------------------
 
 CC=@CC@
@@ -215,11 +213,11 @@ install-plugin-linux: \
 	$(BINRLS)/@SONAME@ \
 	locale/$(PACKAGE_NAME).pot
 
-	@$(MKDIR) $(DESTDIR)$(libdir)/$(PRODUCT_NAME)-plugins
+	@$(MKDIR) $(DESTDIR)@PLUGIN_DIR@
 
 	@$(INSTALL_PROGRAM) \
 		$(BINRLS)/@SONAME@ \
-		$(DESTDIR)$(libdir)/$(PRODUCT_NAME)-plugins
+		$(DESTDIR)@PLUGIN_DIR@
 
 install-plugin-windows: \
 	$(BINRLS)/@SONAME@ \
