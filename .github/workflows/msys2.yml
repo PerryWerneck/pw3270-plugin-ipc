@@ -20,7 +20,7 @@ jobs:
         with:
           msystem: mingw64
           update: true
-          install: xz mingw-w64-x86_64-gcc automake autoconf make git pkgconf mingw-w64-x86_64-gettext gettext-devel lib3270 libv3270
+          install: xz mingw-w64-x86_64-gcc automake autoconf make git pkgconf mingw-w64-x86_64-gettext gettext-devel
       - name: CI-Build
         run: |
           ./win/ci-build.sh
