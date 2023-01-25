@@ -45,7 +45,7 @@ void ipc3270_export_object(GObject *object, const char *name, GError G_GNUC_UNUS
 
 	for(id='A';id < 'Z';id++) {
 
-		gchar	* pipename = g_strdup_printf(PW3270_IPC_SESSION_BUS_NAME,name,id);
+		g_autofree gchar * pipename = g_strdup_printf(PW3270_IPC_SESSION_BUS_NAME,name,id);
 		gchar 	* ptr;
 		HANDLE	  hPipe;
 
@@ -65,13 +65,12 @@ void ipc3270_export_object(GObject *object, const char *name, GError G_GNUC_UNUS
 									NULL);						// default security attributes
 
 		debug("%s = %p",pipename,hPipe);
-		g_free(pipename);
 
 		if(hPipe != INVALID_HANDLE_VALUE) {
 
 			ipc->source = (IPC3270_PIPE_SOURCE *) g_source_new(ipc3270_get_source_funcs(),sizeof(IPC3270_PIPE_SOURCE));
 
-			g_message("Got session \"%c\"",id);
+			g_message("Got session \"%c\" on \"%s\"",id,pipename);
 
 			// Update registry
 			{
@@ -90,8 +89,8 @@ void ipc3270_export_object(GObject *object, const char *name, GError G_GNUC_UNUS
 
 			//  IO_accept(source);
 			ipc3270_wait_for_client(ipc->source);
-
 			break;
+
 		}
 
 	}
