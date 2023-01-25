@@ -136,7 +136,7 @@ static void process_input(IPC3270_PIPE_SOURCE *source, DWORD cbRead) {
 			break;
 
 		default:
-			g_message("Rejecting request \"%s\": Invalid type %d",request_name, request_type);
+			g_message("Rejecting request \"%s\" with invalid type %d",request_name, request_type);
 			g_set_error(&error,IPC3270(source->object)->error_domain,EINVAL,"Invalid or unexpected type %d",request_type);
 
 		}
