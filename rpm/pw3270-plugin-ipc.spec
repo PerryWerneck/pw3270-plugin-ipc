@@ -43,6 +43,7 @@ BuildRequires:	coreutils
 BuildRequires:	gcc-c++
 BuildRequires:	gettext-devel
 BuildRequires:	m4
+BuildRequires:  appstream-glib
 
 BuildRequires:	pkgconfig(lib3270) >= 5.4
 BuildRequires:	pkgconfig(libv3270) >= 5.4
@@ -75,6 +76,8 @@ make all
 %install
 %make_install
 
+appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.metainfo.xml
+
 %files
 %defattr(-,root,root)
 
@@ -82,6 +85,7 @@ make all
 %doc AUTHORS README.md
 %license LICENSE
 %{plugindir}/*.so
+%{_datadir}/metainfo/*.metainfo.xml
 
 %changelog
 
