@@ -1,0 +1,21 @@
+Source: pw3270-plugin-ipc
+Section: unknown
+Priority: optional
+Maintainer: Perry Werneck <perry.werneck@gmail.com>
+Build-Depends: debhelper (>= 7), autotools-dev, autoconf, automake, gettext, libssl-dev, pkg-config, libdbus-1-dev, libdbus-glib-1-dev, lib3270-dev, libv3270-dev
+
+Package: pw3270-plugin-ipc
+Architecture: any
+Section: libs
+Depends: ${misc:Depends}, ${shlibs:Depends}, pw3270
+Recommends: pw3270-plugin-ipc (= ${binary:Version})
+Provides: pw3270-plugin-ipc (= ${binary:Version})
+Description: IPC PLugin for pw3270.
+ This package provides a plugin exporting an active pw3270 session as D-Bus object.
+ 
+Package: pw3270-plugin-ipc-dbg
+Architecture: any
+Depends: pw3270-plugin-ipc (= ${binary:Version}), ${misc:Depends}
+Description: Debugging symbols for pw3270-plugin-ipc
+ This package contains the debugging symbols for pw3270-plugin-ipc.
+
