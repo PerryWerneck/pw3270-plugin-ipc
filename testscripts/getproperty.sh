@@ -2,13 +2,14 @@
 #
 # https://stackoverflow.com/questions/48648952/set-get-property-using-dbus-send
 #
+. ./dbus.conf
 
 dbus-send \
 	--session \
-	--dest=br.com.bb.pw3270.a\
+	--dest=${DBUS_DEST}\
 	--print-reply \
-	"/br/com/bb/pw3270/a" \
+	"${DBUS_PATH}" \
 	"org.freedesktop.DBus.Properties.Get" \
-	string:br.com.bb.tn3270.session \
+	string:${DBUS_INTERFACE} \
 	string:${1}
 

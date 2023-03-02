@@ -5,7 +5,7 @@
 
 dbus-send \
 	--session \
-	--dest=br.com.bb.pw3270.a\
+	--dest=br.app.pw3270.terminal.a\
 	--print-reply \
 	"/br/com/bb/tn3270/session" \
 	"br.com.bb.tn3270.session.${1}"
