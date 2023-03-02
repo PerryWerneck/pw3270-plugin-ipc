@@ -51,10 +51,7 @@ install: build
 	make all
 
 	# Install plugin module
-	make DESTDIR=$(PWD)/debian/pw3270-plugin-ipc -C server install-plugin-linux
-
-	# Install dev
-	make DESTDIR=$(PWD)/debian/pw3270-plugin-ipc-dev -C client install-devel
+	make DESTDIR=$(PWD)/debian/pw3270-plugin-ipc install
 
 	# --- end custom part for installing
 
