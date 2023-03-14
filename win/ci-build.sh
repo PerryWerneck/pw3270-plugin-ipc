@@ -75,6 +75,7 @@ make all  > $LOGFILE 2>&1 || die "Make failure"
 
 make DESTDIR=.bin/package install
 tar --create --xz --file=mingw-pw3270-plugin-ipc.tar.xz --directory=.bin/package --verbose .
+ls -l *.tar.xz
 
 echo "Build complete"
 
