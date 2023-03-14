@@ -36,7 +36,7 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           tag: 5.5
-          artifacts: "mingw-pw3270-ipc-plugin.tar.xz"
+          artifacts: "mingw-pw3270-plugin-ipc.tar.xz"
           allowUpdates: true
           draft: false
           makeLatest: true
