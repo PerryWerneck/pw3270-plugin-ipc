@@ -192,7 +192,7 @@ static gboolean register_object(ipc3270 *ipc, const char *name, char id) {
 
 		gchar * introspection_xml = g_string_free(introspection,FALSE);
 
-		// debug("\n%s\n",introspection_xml);
+		debug("\n%s\n",introspection_xml);
 
 		GDBusNodeInfo * introspection_data = g_dbus_node_info_new_for_xml(introspection_xml, NULL);
 

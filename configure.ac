@@ -58,12 +58,12 @@ AC_ARG_WITH([product-name], [AS_HELP_STRING([--with-product-name], [Set product 
 AC_DEFINE_UNQUOTED(PRODUCT_NAME, "$app_cv_product", [The product name])
 AC_SUBST(PRODUCT_NAME,$app_cv_product)
 
-AC_ARG_WITH([application-id], [AS_HELP_STRING([--application-id], [Set the application ID])], [ app_cv_application_id="$withval" ],[ app_cv_application_id=`pkg-config --variable=product_id lib3270`.terminal ])
+AC_ARG_WITH([application-id], [AS_HELP_STRING([--application-id], [Set the application ID])], [ app_cv_application_id="$withval" ],[ app_cv_application_id=`pkg-config --variable=product_id lib3270` ])
 
 AC_DEFINE_UNQUOTED(APPLICATION_ID, "$app_cv_application_id", [The application ID])
 AC_SUBST(APPLICATION_ID,$app_cv_application_id)
 
-app_cv_dbus_path="/"`echo $app_cv_application_id | sed -e "s@\.@/@g"`
+app_cv_dbus_path="/"`echo $app_cv_application_id | sed -e "s@\.@/@g"`/terminal
 AC_DEFINE_UNQUOTED(DBUS_OBJECT_PATH, "$app_cv_dbus_path",[The D-Bus object path])
 AC_SUBST(DBUS_OBJECT_PATH,$app_cv_dbus_path)
 
@@ -143,6 +143,8 @@ case "$host" in
 		AC_SUBST(GDBUS_LIBS)
 		AC_SUBST(GDBUS_CFLAGS)
 
+		AC_CONFIG_FILES(metainfo.xml)
+		
 esac
 
 dnl ---------------------------------------------------------------------------
@@ -152,7 +154,7 @@ dnl ---------------------------------------------------------------------------
 AC_PATH_TOOL([VALGRIND], [valgrind], [no])
 AC_PATH_TOOL([AR], [ar], [ar])
 AC_PATH_TOOL([DLLTOOL], [dlltool], [true])
-AC_PATH_TOOL([STRIP], [strip], [true])
+AC_PATH_TOOL([STRIP], [strip], [true])	
 AC_PATH_TOOL([STRIP], [strip], [true])
 AC_PATH_TOOL([WINDRES], [windres], [true])
 AC_PATH_TOOL([DOXYGEN], [doxygen], [true])

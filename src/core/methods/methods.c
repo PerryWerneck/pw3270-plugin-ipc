@@ -49,6 +49,7 @@ int ipc3270_method_call(GObject *object, const gchar *method_name, GVariant *req
 		{ "wait",						ipc3270_method_wait							},
 		{ "waitforready",				ipc3270_method_wait_for_ready				},
 		{ "waitForConnectionState",		ipc3270_method_wait_for_cstate				},
+		{ "waitForConnected",			ipc3270_method_wait_for_connected			},
 		{ "waitforupdate",				ipc3270_method_wait_for_update				},
 		{ "waitforkeyboardunlock",		ipc3270_method_wait_for_keyboard_unlock		},
 
@@ -68,6 +69,9 @@ int ipc3270_method_call(GObject *object, const gchar *method_name, GVariant *req
 		{ "getFieldAttribute",			ipc3270_method_get_field_attribute			},
 		{ "getFieldAttributeAt",		ipc3270_method_get_field_attribute			},
 		{ "getFieldAttributeAtAddress",	ipc3270_method_get_field_attribute			},
+		{ "getField",					ipc3270_method_get_field					},
+		{ "getFieldAt",					ipc3270_method_get_field					},
+		{ "getFieldAtAddress",			ipc3270_method_get_field					},
 
 		{ "setCursorAddress",			ipc3270_method_set_cursor					},
 		{ "setCursorPosition",			ipc3270_method_set_cursor					},

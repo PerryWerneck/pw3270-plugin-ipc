@@ -5,7 +5,7 @@
 
 dbus-send \
 	--session \
-	--dest=br.com.bb.pw3270.a\
+	--dest=br.app.pw3270.terminal.a\
 	--print-reply \
 	"/br/com/bb/tn3270/session" \
 	"org.freedesktop.DBus.Properties.Set" \
@@ -20,13 +20,13 @@ dbus-send \
 #gdbus \
 #        introspect \
 #        --session \
-#        --dest=br.com.bb.pw3270.a \
+#        --dest=br.app.pw3270.terminal.a \
 #        --object-path=/br/com/bb/tn3270/session
 
 #gdbus \
 #	call \
 #	--session \
-#	--dest br.com.bb.pw3270.a \
+#	--dest br.app.pw3270.terminal.a \
 #	--object-path /br/com/bb/tn3270/session \
 #	--method org.freedesktop.DBus.Properties.Set \
 #	"br.com.bb.tn3270.session" \

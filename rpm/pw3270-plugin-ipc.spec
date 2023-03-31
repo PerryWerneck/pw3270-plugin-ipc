@@ -44,6 +44,10 @@ BuildRequires:	gcc-c++
 BuildRequires:	gettext-devel
 BuildRequires:	m4
 
+%if 0%{?suse_version}
+BuildRequires:	appstream-glib
+%endif
+
 BuildRequires:	pkgconfig(lib3270) >= 5.4
 BuildRequires:	pkgconfig(libv3270) >= 5.4
 BuildRequires:	pkgconfig(dbus-1)
@@ -75,6 +79,10 @@ make all
 %install
 %make_install
 
+%if 0%{?suse_version}
+appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/*.metainfo.xml
+%endif
+
 %files
 %defattr(-,root,root)
 
@@ -82,6 +90,7 @@ make all
 %doc AUTHORS README.md
 %license LICENSE
 %{plugindir}/*.so
+%{_datadir}/metainfo/*.metainfo.xml
 
 %changelog
 

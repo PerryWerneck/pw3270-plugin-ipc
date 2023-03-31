@@ -33,19 +33,19 @@
 int ipc3270_method_action(GObject *session, GVariant *request, GObject *response, GError G_GNUC_UNUSED(**error)) {
 
 	if(g_variant_n_children(request) != 1) {
-		g_message("action was called with %u arguments.",(unsigned int) g_variant_n_children(request));
+		g_message("action was called with %u arguments, expecting only one.",(unsigned int) g_variant_n_children(request));
 		ipc3270_response_append_int32(response, EINVAL);
 	}
 
 	GVariant *value = g_variant_get_child_value(request,0);
 
-	ipc3270_response_append_int32(
-		response,
-		lib3270_activate_by_name(
-			ipc3270_get_session(session),
-			g_variant_get_string(value,NULL)
-		)
-	);
+	const LIB3270_ACTION * action = lib3270_action_get_by_name(g_variant_get_string(value,NULL));
+
+	int rc = lib3270_action_activate(action,ipc3270_get_session(session));
+
+	g_message("Action '%s' activation return code was %d.",action->name,rc);
+
+	ipc3270_response_append_int32(response, rc);
 
 	g_variant_unref(value);
 
@@ -68,7 +68,9 @@ int ipc3270_method_activatable(GObject *session, GVariant *request, GObject *res
 	const LIB3270_ACTION * action = lib3270_action_get_by_name(g_variant_get_string(value,NULL));
 
 	if(action) {
-		ipc3270_response_append_boolean(response, lib3270_action_is_activatable(action, ipc3270_get_session(session)));
+		gboolean activatable = lib3270_action_is_activatable(action, ipc3270_get_session(session));
+		g_message("action '%s' is %s",action->name,(activatable ? "activatable" : "not activatable"));
+		ipc3270_response_append_boolean(response, activatable);
 	} else {
 		ipc3270_response_append_boolean(response, FALSE);
 	}

@@ -219,6 +219,12 @@ install-plugin-linux: \
 		$(BINRLS)/@SONAME@ \
 		$(DESTDIR)@PLUGIN_DIR@
 
+	@$(MKDIR) $(DESTDIR)$(datarootdir)/metainfo
+	@$(INSTALL_DATA) \
+		metainfo.xml \
+		$(DESTDIR)$(datarootdir)/metainfo/@APPLICATION_ID@.plugin.ipc.metainfo.xml
+
+
 install-plugin-windows: \
 	$(BINRLS)/@SONAME@ \
 	locale/$(PACKAGE_NAME).pot
