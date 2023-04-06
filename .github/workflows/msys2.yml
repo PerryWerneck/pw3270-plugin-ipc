@@ -18,7 +18,7 @@ jobs:
       - uses: oprypin/find-latest-tag@v1
         id: gettag
         with:
-          repository: PerryWerneck/pw3270-plugin-ipc.git
+          repository: PerryWerneck/pw3270-plugin-ipc
           releases-only: true
       - uses: msys2/setup-msys2@v2
         with:
@@ -40,7 +40,7 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.gettag.outputs.tag }}
-          artifacts: "*-pw3270-plugin-ipc.tar.xz"
+          artifacts: "*-pw3270-plugin-*.pkg.tar.zst"
           allowUpdates: true
           draft: false
           makeLatest: true
