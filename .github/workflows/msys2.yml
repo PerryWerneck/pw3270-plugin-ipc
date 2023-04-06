@@ -5,11 +5,10 @@ on:
       - master
   push:
     branches:
-      - develop
-
+      - develop    
 jobs:
   msys2-mingw:
-    name: Publish for Windows 64
+    name: Publish Windows 64
     runs-on: windows-latest
     defaults:
       run:
@@ -19,23 +18,23 @@ jobs:
       - uses: oprypin/find-latest-tag@v1
         id: gettag
         with:
-          repository: PerryWerneck/pw3270-plugin-ipc
+          repository: PerryWerneck/pw3270-plugin-ipc.git
           releases-only: true
       - uses: msys2/setup-msys2@v2
         with:
           msystem: mingw64
           update: true
-          install: xz mingw-w64-x86_64-gcc automake autoconf make git pkgconf mingw-w64-x86_64-gettext gettext-devel mingw-w64-x86_64-openssl libtool mingw-w64-x86_64-gtk3
+          install: dos2unix mingw-w64-x86_64-gcc automake autoconf make git pkgconf mingw-w64-x86_64-gettext gettext-devel mingw-w64-x86_64-openssl libtool mingw-w64-x86_64-gtk3
       - uses: robinraju/release-downloader@v1.7
         with:
-          repository: PerryWerneck/lib3270
+          repository: "PerryWerneck/lib3270"
           latest: true
-          fileName: mingw-w64-x86_64-lib3270.tar.xz
+          fileName: "mingw-w64-x86_64-lib3270-5.4-0-x86_64.pkg.tar.zst"      
       - uses: robinraju/release-downloader@v1.7
         with:
-          repository: PerryWerneck/libv3270
+          repository: "PerryWerneck/libv3270"
           latest: true
-          fileName: mingw-w64-x86_64-libv3270.tar.xz
+          fileName: "mingw-w64-x86_64-libv3270-5.4-0-x86_64.pkg.tar.zst"      
       - name: CI-Build
         run: ./win/ci-build.sh
       - uses: ncipollo/release-action@v1
@@ -48,4 +47,5 @@ jobs:
           omitBody: true
           omitPrereleaseDuringUpdate: true
           replacesArtifacts: true
+
 
