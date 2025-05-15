@@ -32,7 +32,7 @@
 #include <lib3270/actions.h>
 #include <lib3270/properties.h>
 #include <lib3270/log.h>
-#include <lib3270/win32.h>
+#include <lib3270/os.h>
 #include <ipc-glib.h>
 
 void ipc3270_export_object(GObject *object, const char *name, GError G_GNUC_UNUSED(**error)) {
