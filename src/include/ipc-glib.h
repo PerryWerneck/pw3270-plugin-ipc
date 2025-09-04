@@ -35,26 +35,11 @@
   *
   */
 
+#include <config.h>
+
 #ifndef PW3270_IPC_H_INCLUDED
 
 	#define PW3270_IPC_H_INCLUDED
-
-	#ifdef _WIN32
-
-		#define PW3270_IPC_SESSION_BUS_NAME					"\\\\.\\pipe\\%s\\%c"
-
-	#else
-
-		#define PW3270_IPC_SESSION_BUS_NAME			"@APPLICATION_ID@.terminal.%c"
-		#define PW3270_IPC_SESSION_BUS_PATH			"@DBUS_OBJECT_PATH@/%c"
-
-		#define PW3270_IPC_SESSION_INTERFACE_NAME	"@APPLICATION_ID@.terminal.session"
-
-		// #define PW3270_IPC_SERVICE_BUS_NAME			"@APPLICATION_ID@.service"
-		// #define PW3270_IPC_SERVICE_INTERFACE_NAME	"@APPLICATION_ID@.service"
-		// #define PW3270_IPC_SERVICE_OBJECT_PATH		"@DBUS_OBJECT_PATH@/service"
-
-	#endif // _WIN32
 
 	#include <glib.h>
 	#include <gtk/gtk.h>

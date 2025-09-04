@@ -25,7 +25,7 @@
 
 Summary:		IPC plugin for %{product} 
 Name:			pw3270-plugin-ipc
-Version:		5.5
+Version: 5.5.0
 Release:		0
 License:		LGPL-3.0
 Source:			%{name}-%{version}.tar.xz
