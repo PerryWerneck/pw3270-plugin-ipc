@@ -20,9 +20,3 @@ src/core/windows/pipesource.c
 src/core/windows/start.c
 src/core/windows/stop.c
 src/plugin/plugin.c
-src/core/linux/gobject.h
-src/core/methods/private.h
-src/core/windows/gobject.h
-src/include/internals.h
-src/include/ipc-glib.h
-src/plugin/private.h

@@ -86,14 +86,16 @@ deplist = [
 product_id = lib3270.get_variable('product_id')
 app_conf = configuration_data()
 app_conf.set_quoted('PACKAGE_NAME', meson.project_name())
-app_conf.set_quoted('PRODUCT_NAME', lib3270.get_variable('product_name'))
-app_conf.set_quoted('PRODUCT_ID', product_id)
 app_conf.set_quoted('PACKAGE_VERSION', meson.project_version())
 app_conf.set_quoted('PACKAGE_DESCRIPTION', project_description)
 app_conf.set('PACKAGE_VERSION_MAJOR', pkg_major_version)
 app_conf.set('PACKAGE_VERSION_MINOR', pkg_minor_version)
 app_conf.set('PACKAGE_VERSION_MICRO', pkg_micro_version)
 app_conf.set('PLUGIN_PATH',lib3270.get_variable('plugin_path'))
+
+app_conf.set('PRODUCT_ID', lib3270.get_variable('product_id'))
+app_conf.set('PRODUCT_NAME', lib3270.get_variable('product_name'))
+app_conf.set('PRODUCT_VERSION',lib3270.get_variable('sdk_version'))
 
 if dbus.found()
 	app_conf.set('HAVE_DBUS', 1)
@@ -260,32 +262,39 @@ elif host_machine.system() == 'darwin'
 
 else
 
-  dynamic = shared_library(
-	meson.project_name(), 
-    lib_src,
-    install: true,
-    version : libversion,
-    cpp_args: [ '-ffat-lto-objects' ],
-    soversion : libversion,
-    gnu_symbol_visibility: 'hidden',
-	dependencies: deplist,
-	install_dir: lib3270.get_variable('plugin_path'),
-    include_directories: includes_dir
-  )
-
-  static_library = declare_dependency(
-	link_with : static_library(
+	dynamic = shared_library(
 		meson.project_name(), 
-	    lib_src,
-		pic: true,
-		cpp_args: [ '-DSTATIC_LIBRARY', '-fno-lto' ],
+		lib_src,
 		install: true,
-		include_directories: includes_dir,
+		version : libversion,
+		cpp_args: [ '-ffat-lto-objects' ],
+		soversion : libversion,
+		gnu_symbol_visibility: 'hidden',
 		dependencies: deplist,
-	),
-	include_directories : includes_dir,
-  )
+		install_dir: lib3270.get_variable('plugin_path'),
+		include_directories: includes_dir
+	)
+
+	static_library = declare_dependency(
+		link_with : static_library(
+			meson.project_name(), 
+			lib_src,
+			pic: true,
+			cpp_args: [ '-DSTATIC_LIBRARY', '-fno-lto' ],
+			install: true,
+			include_directories: includes_dir,
+			dependencies: deplist,
+		),
+		include_directories : includes_dir,
+	)
  
+	configure_file(
+		input : 'branding/metainfo.xml.in',
+		output : lib3270.get_variable('product_id') + '.ipcplugin.metainfo.xml',
+		install_dir: get_option('datadir') / 'metainfo',
+		configuration : app_conf
+	)
+
 endif
 
 dynamic_library = declare_dependency(

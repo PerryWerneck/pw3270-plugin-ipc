@@ -12,17 +12,17 @@
 
 <component type="addon">
 
-	<id>br.app.pw3270.plugin.ipc</id>
-	<extends>br.app.pw3270.terminal.desktop</extends>
+	<id>@PRODUCT_ID@.ipcplugin</id>
+	<extends>@PRODUCT_ID@.terminal.desktop</extends>
 
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>LGPL-3.0</project_license>
 
-	<name>pw3270-pw3270-plugin-ipc</name>
-	<name xml:lang="pt_BR">pw3270-pw3270-plugin-ipc</name>
+	<name>@PRODUCT_NAME@-@PACKAGE_NAME@</name>
+	<name xml:lang="pt_BR">@PRODUCT_NAME@-@PACKAGE_NAME@</name>
 
-	<summary>IPC Plugin module for pw3270</summary>
-	<summary xml:lang="pt_BR">Plugin IPC para pw3270</summary>
+	<summary>IPC Plugin module for @PRODUCT_NAME@</summary>
+	<summary xml:lang="pt_BR">Plugin IPC para @PRODUCT_NAME@</summary>
 
 	<developer_name>Perry Werneck</developer_name>
 

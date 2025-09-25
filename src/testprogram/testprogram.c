@@ -52,7 +52,7 @@
  #else
  const gchar * plugin_path 	= G_STRINGIFY(PLUGIN_PATH);
  #endif // _WIN32
- const gchar * session_name	= PRODUCT_NAME;
+ const gchar * session_name	= G_STRINGIFY(PRODUCT_NAME);
  const gchar * plugin_name	= "ipcserver." G_MODULE_SUFFIX;
 
  /*---[ Implement ]----------------------------------------------------------------------------------*/
@@ -263,7 +263,7 @@ int main (int argc, char **argv) {
 	GtkApplication *app;
 	int status;
 
-	app = gtk_application_new (PRODUCT_ID ".ipctest",G_APPLICATION_FLAGS_NONE);
+	app = gtk_application_new (G_STRINGIFY(PRODUCT) ".ipctest",G_APPLICATION_FLAGS_NONE);
 
 	g_signal_connect (app, "activate", G_CALLBACK(activate), NULL);
 
