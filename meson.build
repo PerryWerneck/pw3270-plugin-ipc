@@ -224,14 +224,6 @@ if host_machine.system() == 'windows'
 
 elif host_machine.system() == 'darwin'
 
-	pkg.generate(
-		name: meson.project_name(),
-		description: project_description,
-		variables: pkg_variables,
-		requires: [ 'lib3270' ],
-		libraries: [ '-lv3270' ]
-	)
-
 	dynamic = shared_library(
 		meson.project_name(), 
 		lib_src,
